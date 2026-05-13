@@ -1,52 +1,47 @@
-# 🔐 Sistema de Login
+# Sistema de Login
 
-Um sistema completo de autenticação com React (frontend) e Node.js (backend).
+Sistema de autenticação full stack com React no frontend e Node.js/Express no backend.
+O projeto demonstra um fluxo completo de cadastro, login, sessão com JWT e rota protegida.
 
-## 📋 Funcionalidades
+## Funcionalidades
 
-- ✅ Cadastro de usuários
-- ✅ Login seguro
-- ✅ Validação de email
-- ✅ Interface responsiva
-- ✅ Backend com autenticação JWT
+- Cadastro de usuário com nome, email e senha
+- Login com validação de credenciais
+- Hash de senha com `bcryptjs`
+- Autenticação com token JWT
+- Rota protegida `/api/me`
+- Validação de email e senha no frontend e no backend
+- Bloqueio de email duplicado
+- Rate limit nas rotas de autenticação
+- Painel privado com dados do usuário logado
+- Logout com limpeza da sessão local
 
-## 🛠️ Tecnologias Usadas
+## Tecnologias
 
-### Frontend (Pasta `/frontend`)
-- React.js
-- Tailwind CSS
-- Axios (pra fazer requisições)
+### Frontend
 
-### Backend (Pasta `/backend`)
+- React
+- CSS responsivo
+- Fetch API
+- Local Storage para guardar o token da sessão
+
+### Backend
+
 - Node.js
-- Express.js
-- Banco de dados (MongoDB ou Firebase)
-- JWT para autenticação
+- Express
+- bcryptjs
+- jsonwebtoken
+- helmet
+- express-rate-limit
 
-## 🚀 Como Rodar Este Projeto
+## Como Rodar
 
 ### Pré-requisitos
-- Node.js instalado ([download](https://nodejs.org))
-- Git instalado ([download](https://git-scm.com))
 
-### 1. Clonar o repositório
+- Node.js instalado
+- npm instalado
 
-```bash
-git clone https://github.com/seu-usuario/login-system.git
-cd login-system
-```
-
-### 2. Rodar o Frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-O frontend vai abrir em `http://localhost:3000`
-
-### 3. Rodar o Backend (em outra aba do terminal)
+### Backend
 
 ```bash
 cd backend
@@ -54,6 +49,47 @@ npm install
 npm start
 ```
 
-O backend vai rodar em `http://localhost:5000`
+A API vai rodar em `http://localhost:5000`.
 
-## 📂 Estrutura do Projeto
+### Frontend
+
+Em outro terminal:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+O React vai abrir em `http://localhost:3000`.
+
+## Variáveis de Ambiente
+
+O backend funciona sem configuração extra em modo local, mas em produção defina:
+
+```bash
+JWT_SECRET=sua-chave-secreta
+CLIENT_URL=http://localhost:3000
+PORT=5000
+```
+
+No frontend, se a API estiver em outro endereço:
+
+```bash
+REACT_APP_API_URL=http://localhost:5000
+```
+
+## Rotas da API
+
+| Método | Rota | Descrição |
+| --- | --- | --- |
+| `GET` | `/api/health` | Verifica se a API está online |
+| `POST` | `/api/register` | Cadastra usuário e retorna token |
+| `POST` | `/api/login` | Autentica usuário e retorna token |
+| `GET` | `/api/me` | Retorna o usuário logado usando Bearer Token |
+
+## Observação
+
+Os usuários ficam salvos em memória para manter o projeto simples e fácil de demonstrar.
+Ao reiniciar o backend, os cadastros são apagados. O próximo passo natural seria conectar
+um banco de dados como PostgreSQL, MongoDB ou Firebase.
