@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useMemo, useState } from 'react';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL || getDefaultApiUrl();
 
 const emptyCampaign = {
   sendMode: 'preview',
@@ -496,6 +496,16 @@ function App() {
       </section>
     </main>
   );
+}
+
+function getDefaultApiUrl() {
+  if (typeof window === 'undefined') {
+    return 'http://localhost:5000';
+  }
+
+  const { protocol, hostname } = window.location;
+
+  return `${protocol}//${hostname}:5000`;
 }
 
 function EmailAutomation({

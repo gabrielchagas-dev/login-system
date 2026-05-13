@@ -71,6 +71,36 @@ Importante: `http://localhost:5000` e as rotas `/api/...` sao apenas a API do
 backend. Elas nao sao paginas do site. O navegador deve abrir o frontend em
 `http://localhost:3000`.
 
+### Acessar pelo celular na mesma rede
+
+1. Conecte o computador e o celular no mesmo Wi-Fi.
+2. No computador, rode:
+
+```bash
+npm run dev
+```
+
+3. Descubra o IPv4 do computador:
+
+```bash
+ipconfig
+```
+
+4. No celular, abra o frontend usando o IP do computador:
+
+```txt
+http://SEU-IP:3000
+```
+
+Exemplo:
+
+```txt
+http://192.168.18.12:3000
+```
+
+O backend continua rodando na porta `5000`, mas voce nao abre essa porta no
+navegador. O frontend chama a API automaticamente usando o mesmo IP.
+
 ### Backend
 
 ```bash

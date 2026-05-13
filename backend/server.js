@@ -22,9 +22,27 @@ const allowedOrigins = [
   'http://localhost:3001'
 ].filter(Boolean);
 
+function isPrivateNetworkOrigin(origin) {
+  try {
+    const { hostname, port } = new URL(origin);
+    const isDevPort = port === '3000' || port === '3001';
+    const isPrivateHost = (
+      hostname === 'localhost'
+      || hostname === '127.0.0.1'
+      || hostname.startsWith('192.168.')
+      || hostname.startsWith('10.')
+      || /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(hostname)
+    );
+
+    return isDevPort && isPrivateHost;
+  } catch (error) {
+    return false;
+  }
+}
+
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin) || isPrivateNetworkOrigin(origin)) {
       return callback(null, true);
     }
 
