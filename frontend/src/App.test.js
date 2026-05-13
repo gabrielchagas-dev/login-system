@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders login screen', () => {
   render(<App />);
   expect(screen.getByRole('heading', { name: /entrar na conta/i })).toBeInTheDocument();
 });

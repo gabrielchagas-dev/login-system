@@ -16,6 +16,10 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "login-system-workspace": "file:..",
+    "nodemailer": "^8.0.7",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
   }
 }
